@@ -43,6 +43,7 @@ function ikaAnimation() {
     span.style.color = colors[Math.floor(Math.random() * colors.length)];
     span.textContent = ika.list[ika.count++ % ika.list.length];
     document.body.appendChild(span);
+    console.log(ika.count);
     if (document.querySelectorAll(".ika").length >= ika.limit) {
       clearInterval(ika.tmr);
       alert("侵略完了！");
