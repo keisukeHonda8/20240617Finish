@@ -3,7 +3,6 @@
 
 /* from here */
 /* 1. evenOrOdd という名前の関数を宣言してください。*/
-//JSDoc
 /**
  *
  * @param {[number]} arrayNumbers       数値型の要素を持つ配列
@@ -11,14 +10,14 @@
  * @returns {[number]}                  boolean(true)-> 偶数のみの配列, (false)-> 奇数のみの配列
  */
 //keyword : filterメソッド、filterメソッドに渡されるコールバック関数（無名関数）、三項演算子
-//func after
+/* after */
 const evenOrOdd = (arrayNumber, selection) =>
   console.log(
     arrayNumber.filter((number) =>
       selection ? number % 2 === 0 : number % 2 !== 0
     )
   );
-//func before
+/* before */
 // function evenOrOdd(arrayNumber, selection) {
 //   const arrayOrOdd = [];
 //   if (selection === true) {
@@ -43,7 +42,6 @@ evenOrOdd([-1, -2, 4, -5, -7], false); // [-1, -5, -7]
 console.log(`----------------------------------------------------------`);
 
 /* 2. findKeys という名前の関数を宣言してください。*/
-//JSDoc
 /**
  *
  * @param {{any}} objectInput    複数のデータ型を要素に持つobject
@@ -51,12 +49,12 @@ console.log(`----------------------------------------------------------`);
  * @returns {[string]}      targetListにマッチするバリューを持つ全てのキーを含む新しい配列
  */
 //keyword : object.key()静的メソッド、filterメソッド、filterメソッドに渡されるコールバック関数（無名関数）
-//func after
+/* after */
 const findKeys = (objectInput, target) =>
   console.log(
     Object.keys(objectInput).filter((key) => objectInput[key] === target)
   );
-//func before
+/* before */
 // function findKeys(object, target) {
 //   const arrayFindKeys = [];
 //   for (let key in object) {
@@ -72,14 +70,13 @@ findKeys({ 1: "h", b: "el", c: "hello", d: "hello", e: "o" }, "hello"); // ["c",
 console.log(`----------------------------------------------------------`);
 
 /* 3. buildObject という名前の関数を宣言してください。*/
-//JSDoc
 /**
  *
  * @param {[string]} arraySetKeys    オブジェクトキーに設定する配列
  * @param {[any]} arraySetValues     オブジェクトバリューに設定する配列
  * @returns {{any}} buildObject      第一引数、第二引数の配列要素すべての{arraySetKey: arraySetValue}
  */
-//func after
+/* after */
 const buildObject = (arraySetKeys, arraySetValues) => {
   const obj = {};
   for (let i = 0; i < arraySetKeys.length; i++) {
@@ -87,7 +84,7 @@ const buildObject = (arraySetKeys, arraySetValues) => {
   }
   return console.log(obj);
 };
-//func after
+/* after */
 // function buildObject(arraySetKeys, arraySetValues) {
 //   const obj = {};
 //   for (let i = 0; i < arraySetKeys.length; i++) {
@@ -95,7 +92,7 @@ const buildObject = (arraySetKeys, arraySetValues) => {
 //   }
 //   return console.log(obj);
 // }
-//func before
+/* before */
 // function buildObject(arraySetKeys, arraySetValues) {
 //   const arrayDivisionSetKeys = [...arraySetKeys];
 //   const arrayDivisionSetValues = [...arraySetValues];
@@ -120,18 +117,23 @@ buildObject(
 console.log(`----------------------------------------------------------`);
 
 /* 4.add という名前の関数を宣言してください。 */
-//JSDoc
 /**
  *
  * @param {number} x        数値x を受け取り
  * @returns {function}      関数を返し、返された関数は数値y を受け取り、x+y の和を返す
  */
-//func
-function add(x) {
+/* after */
+const add = (x) => {
   return function (y) {
     return console.log(x + y);
   };
-}
+};
+/* before */
+// function add(x) {
+//   return function (y) {
+//     return console.log(x + y);
+//   };
+// }
 //test
 const addTwo = add(2);
 addTwo(3); // 5
@@ -139,18 +141,20 @@ addTwo(70); // 72
 
 const addOneHundred = add(100);
 addOneHundred(3); // 103
+
+const addEighteen = add(18);
+addEighteen(24); // 42
 console.log(`----------------------------------------------------------`);
 
 /* 5. 以下のコードを実行すると、どの順番で何が表示されるでしょうか？ */
-//func
 // function sayHello() {
 //   console.log("Hello");
 // }
-// //func
+
 // function sayHelloAndName(name) {
 //   return "Hello, " + name;
 // }
-//set
+
 // const foo = sayHello();
 // const bar = sayHelloAndName("JavaScript");
 //test
@@ -158,7 +162,7 @@ console.log(`----------------------------------------------------------`);
 // console.log(bar);
 
 // あなたの回答と、なぜそうなるのかの説明をここに記載してください
-//after
+/* after */
 /*  1.sayHello() 関数は "Hello" をコンソールに出力します。
     2.sayHelloAndName("JavaScript") 関数は "Hello, JavaScript" を返しますが、
       この値は変数 bar に代入されるだけでコンソールには出力されません。
@@ -172,8 +176,7 @@ console.log(`----------------------------------------------------------`);
       undefined
       Hello, JavaScript
 */
-
-//before
+/* before */
 /*  "Hello" -> "undefined" -> "Hello,JavaScript"　の順番でコンソールに表示されます。
     コードは上から下に実行される為、最初に二行目の "Hello" が Console.log() により表示され、
     console.log(foo); により sayHello() が呼び出されますが、function sayHello() に対する return が無いので 
@@ -184,29 +187,60 @@ console.log(`----------------------------------------------------------`);
 /* 別フォルダ */
 
 /* 7.関数 map を宣言してください。 */
-//JSDoc
 /**
- *
- * @param {[array] or {object}}} collection     配列またはオブジェクトのコレクション
- * @param {function} addOne                     コールバック関数
- * @returns {[array]}   コレクション内の各要素にコールバック関数を実行した結果を要素に持つ新しい配列を返す
+ * 渡されたコレクションの各要素に指定されたコールバック関数を適用して配列を返す
+ * @param {Array|Object} collection   配列またはオブジェクトのコレクション
+ * @param {function} callBack           適用するコールバック関数
+ * @returns {Array}                   コレクション内の各要素にコールバック関数を適用した結果を含む新しい配列
  */
-//func
-function map(collection, addOne) {
+/* after */
+//keyword : Array.isArray()静的メソッド、map()メソッド、Object.keys()静的メソッド、コールバック関数
+const map = (collection, callBack) => {
   let newArray = [];
-  if (Array.isArray(collection) === true) {
-    for (let i = 0; i < collection.length; i++) {
-      newArray.push(addOne(collection[i], i, collection));
-    }
+
+  if (Array.isArray(collection)) {
+    newArray = collection.map((Element, index) =>
+      callBack(Element, index, collection)
+    );
   } else {
-    for (let key in collection) {
-      newArray.push(addOne(collection[key]));
-    }
+    newArray = Object.keys(collection).map((key) => callBack(collection[key]));
   }
   return console.log(newArray);
-}
+};
+/* after */
+// function map(collection, addOne) {
+//   const newArray = [];
+
+//   if (Array.isArray(collection)) {
+//     for (let i = 0; i < collection.length; i++) {
+//       newArray.push(addOne(collection[i], i, collection));
+//     }
+//   } else {
+//     for (let key in collection) {
+//       newArray.push(addOne(collection[key]));
+//     }
+//   }
+//   return console.log(newArray);
 // }
-//func
+/* before */
+// function map(collection, addOne) {
+//   let newArray = [];
+//   if (Array.isArray(collection) === true) {
+//     for (let i = 0; i < collection.length; i++) {
+//       newArray.push(addOne(collection[i], i, collection));
+//     }
+//   } else {
+//     for (let key in collection) {
+//       newArray.push(addOne(collection[key]));
+//     }
+//   }
+//   return console.log(newArray);
+// }
+/**
+ * 渡された数値に1を加えた結果を返す
+ * @param {number} num    入力数値
+ * @returns {number}      入力数値に1を加えた結果
+ */
 function addOne(num) {
   return num + 1;
 }
